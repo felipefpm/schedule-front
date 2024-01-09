@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      gridTempleteRows: {
+      gridTemplateRows: {
         7: 'repeat(7, minmax(0, 1fr))'
       }
     },

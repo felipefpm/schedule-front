@@ -1,3 +1,4 @@
+import { generateDates } from "../../utils/generate-dates"
 import { HabitDay } from "../HabitDay"
 
 const weekDays = [
@@ -9,6 +10,10 @@ const weekDays = [
   'S',
   'S',
 ]
+
+const summaryDates = generateDates()
+const minimumSummarySize = 18 * 7 // 18 weeks
+const amountOfDays = minimumSummarySize - summaryDates.length // 18 weeks
 
 export function SummaryTable() {
   return (
@@ -27,19 +32,18 @@ export function SummaryTable() {
       </div>
 
       <div className="grid grid-rows-7 grid-flow-col gap-3">
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
+        {summaryDates.map(date =>  {
+          return <HabitDay key={date.toString()} />
+        })}
+
+        {amountOfDays > 0 && Array.from({length: amountOfDays}).map((_, index) => {
+          return (
+            <div 
+              key={index} 
+              className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg opacity-40 cursor-not-allowed"
+            />
+          )
+        })}
       </div>
     </div>
   )
